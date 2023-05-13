@@ -1,0 +1,18 @@
+<div class="autocomplete">
+  <input
+    type="text"
+    [(ngModel)]="searchQuery"
+    (input)="filterResults()"
+    placeholder="Search..."
+  />
+  <button class="clear-btn" (click)="clearInput()">Clear</button>
+  <ul *ngIf="filteredResults.length > 0">
+    <li *ngFor="let result of filteredResults" (click)="selectResult(result)">
+      <span [innerHTML]="highlightMatch(result.name)"></span>
+    </li>
+  </ul>
+</div>
+<div class="result-list" *ngIf="showResults">
+  <h1>Selected Names from the Results are</h1>
+  <p *ngFor="let result of results">{{ result.name }}</p>
+</div>
